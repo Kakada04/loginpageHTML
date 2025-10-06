@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gradient Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            padding: 20px;
+        }
+        
+        .login-container {
+            width: 100%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        
+        .login-header {
+            padding: 30px 20px;
+            text-align: center;
+            background: linear-gradient(to right, #4776E6, #8E54E9);
+            color: white;
+        }
+        
+        .login-header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .login-header p {
+            opacity: 0.9;
+        }
+        
+        .login-form {
+            padding: 30px;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 14px 15px 14px 45px;
+            border: 2px solid #e1e1e1;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        
+        .input-group input:focus {
+            border-color: #4776E6;
+            box-shadow: 0 0 0 3px rgba(71, 118, 230, 0.2);
+        }
+        
+        .input-group i {
+            position: absolute;
+            left: 15px;
+            top: 42px;
+            color: #777;
+            font-size: 18px;
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .remember {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember input {
+            margin-right: 8px;
+            accent-color: #4776E6;
+        }
+        
+        .forgot-password {
+            color: #4776E6;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .forgot-password:hover {
+            color: #8E54E9;
+            text-decoration: underline;
+        }
+        
+        .login-button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(to right, #4776E6, #8E54E9);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(71, 118, 230, 0.3);
+        }
+        
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(71, 118, 230, 0.4);
+        }
+        
+        .login-button:active {
+            transform: translateY(0);
+        }
+        
+        .signup-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #555;
+        }
+        
+        .signup-link a {
+            color: #4776E6;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+        
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            background: #4CAF50;
+            color: white;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateX(200%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        @media (max-width: 480px) {
+            .login-container {
+                border-radius: 15px;
+            }
+            
+            .login-header {
+                padding: 25px 15px;
+            }
+            
+            .login-form {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Welcome Back!</h1>
+            <p>Sign in to continue to your account</p>
+        </div>
+        
+        <form class="login-form" id="loginForm">
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Password</label>
+                <i class="fas fa-lock"></i>
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            
+            <div class="remember-forgot">
+                <div class="remember">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Remember me</label>
+                </div>
+                <a href="#" class="forgot-password">Forgot Password?</a>
+            </div>
+            
+            <button type="submit" class="login-button">Sign In</button>
+            
+            <div class="signup-link">
+                Don't have an account? <a href="#">Sign up</a>
+            </div>
+        </form>
+    </div>
+    
+    <div class="notification" id="notification">Email auto-filled from your last visit!</div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const emailInput = document.getElementById('email');
+            const rememberCheckbox = document.getElementById('remember');
+            const notification = document.getElementById('notification');
+            const loginForm = document.getElementById('loginForm');
+            
+            // Check if we have a saved email
+            const savedEmail = localStorage.getItem('savedEmail');
+            if (savedEmail) {
+                emailInput.value = savedEmail;
+                rememberCheckbox.checked = true;
+                
+                // Show notification
+                notification.classList.add('show');
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+            
+            // Handle form submission
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const email = emailInput.value;
+                const rememberMe = rememberCheckbox.checked;
+                
+                // Save email if "Remember me" is checked
+                if (rememberMe) {
+                    localStorage.setItem('savedEmail', email);
+                } else {
+                    localStorage.removeItem('savedEmail');
+                }
+                
+                // In a real application, you would send the data to a server here
+                console.log('Login attempt with:', { email, rememberMe });
+                
+                // Show success message
+                alert('Login successful! (This is a demo)');
+            });
+        });
+    </script>
+</body>
+</html>
